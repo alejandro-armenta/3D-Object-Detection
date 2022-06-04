@@ -77,13 +77,9 @@ def measure_detection_performance(detections, labels, labels_valid, min_iou=0.5)
                 d_poly = Polygon(det_cor)
 
                 intersection = l_poly.intersection(d_poly).area
-                union = l_poly.area + d_poly.area - intersection
-
-                if(union > 0):
-                    iou = intersection / union
-                else:
-                    iou = 1.0
-
+                union = l_poly.union(d_poly).area
+                
+                iou = intersection / union
 
                 #son 3 labels reales!
                 #print(lab_cor)
